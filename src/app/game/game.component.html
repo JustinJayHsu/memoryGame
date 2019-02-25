@@ -1,0 +1,14 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input matInput type="number" placeholder="Board Rows" formControlName="rows">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="number" placeholder="Board Columns" formControlName="columns">
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Generate</button>
+</form>
+<app-board [rows]="rows" [columns]="columns" [deck]="deck" (onCardClicked)="onCardClicked($event)"></app-board>
+<div>
+  Current Player:  {{currentPlayer?.name}}
+</div>
+<div>Score: {{currentPlayer?.state?.score}}</div>
