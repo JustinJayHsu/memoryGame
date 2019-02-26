@@ -19,6 +19,9 @@ export class GameComponent implements OnInit {
     this.gameService.currentPlayer.subscribe(currentPlayer => {
       this.currentPlayer = currentPlayer;
     })
+    this.gameService.endGame.subscribe(endGame => {
+      console.log('Game is over');
+    })
   }
 
   ngOnInit() {
@@ -37,7 +40,8 @@ export class GameComponent implements OnInit {
     this.rows = formValue.rows;
     this.columns = formValue.columns;
     this.generateCards();
-    this.gameService.updatePlayer({ name: 'player1', state: 'ME PONGO' })
+    this.gameService.totalCards = this.deck.length;
+    this.gameService.updatePlayer(this.gameService.players[0]);
   }
 
   generateCards = () => {

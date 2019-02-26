@@ -16,6 +16,7 @@ export class GameService extends TurnBasedGame {
     previousCards: Card[] = [];
     waitingForTurnToEnd;
 
+    totalCards: number;
     constructor() {
         super();
 
@@ -50,7 +51,11 @@ export class GameService extends TurnBasedGame {
         let currentPlayer = this.currentPlayer.value;
         currentPlayer.state.score++;
         this.updatePlayer(currentPlayer);
-        this.endTurn();
+        if (this.isGameOver()) {
+            this.endGame.next();
+        } else {
+            this.endTurn();
+        }
     }
 
     endTurn(nextPlayer: Player = this.currentPlayer.value) {
@@ -59,6 +64,10 @@ export class GameService extends TurnBasedGame {
         this.currentPlayer.next(nextPlayer);
     }
 
+    private isGameOver(): boolean {
+        return this.players.reduce(
+            (accumulator, currentVal) => accumulator + currentVal.state.score, 0) === Math.floor(this.totalCards / 2);
+    }
     private isLastMoveOfTurn() {
         return this.previousCards.length === this._cardsPerTurn - 1;
     }

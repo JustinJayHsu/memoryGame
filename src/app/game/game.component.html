@@ -8,7 +8,9 @@
   <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Generate</button>
 </form>
 <app-board [rows]="rows" [columns]="columns" [deck]="deck" (onCardClicked)="onCardClicked($event)"></app-board>
-<div>
-  Current Player:  {{currentPlayer?.name}}
+<div *ngIf="deck?.length">
+  <div>
+    Current Player: {{currentPlayer?.name}}
+  </div>
+  <div>Score: {{currentPlayer?.state?.score}}</div>
 </div>
-<div>Score: {{currentPlayer?.state?.score}}</div>

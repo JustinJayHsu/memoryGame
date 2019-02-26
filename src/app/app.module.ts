@@ -5,12 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BoardComponent } from './board/board.component';
 import { CardComponent } from './card/card.component';
-import { MatInputModule, MatCardModule, MatButtonModule } from '@angular/material';
+import { MatInputModule, MatCardModule, MatButtonModule, MatDialogModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { GameComponent } from './game/game.component';
 import { GameService } from './game/game.service';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +25,8 @@ import { GameService } from './game/game.service';
     BrowserAnimationsModule,
     FlexLayoutModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule
   ],
   providers: [GameService],
   bootstrap: [AppComponent]
