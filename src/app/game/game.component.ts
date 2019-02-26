@@ -30,8 +30,8 @@ export class GameComponent implements OnInit {
 
   setupForm() {
     this.form = this.fb.group({
-      rows: [3, [Validators.min(1), Validators.required]],
-      columns: [3, [Validators.min(1), Validators.required]],
+      rows: [3, [Validators.min(2), Validators.required]],
+      columns: [3, [Validators.min(2), Validators.required]],
     })
   }
 

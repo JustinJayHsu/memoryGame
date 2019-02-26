@@ -31,6 +31,7 @@ export class GameService extends TurnBasedGame {
         if (!this.waitingForTurnToEnd) {
             card.flip();
             if (this.isLastMoveOfTurn()) {
+                this.turn++;
                 if (this.isMatch(card)) {
                     this.onSuccessfulMatch();
                 } else {
@@ -72,9 +73,10 @@ export class GameService extends TurnBasedGame {
         });
         this.previousCards = [];
         this.waitingForTurnToEnd = false;
+        this.turn = 0;
     }
 
-    private isGameOver(): boolean {
+    isGameOver(): boolean {
         return this.players.reduce(
             (accumulator, currentVal) => accumulator + currentVal.state.score, 0) === Math.floor(this.totalCards / 2);
     }
