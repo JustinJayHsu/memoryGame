@@ -41,7 +41,7 @@ export class GameComponent implements OnInit {
     this.columns = formValue.columns;
     this.generateCards();
     this.gameService.totalCards = this.deck.length;
-    this.gameService.updatePlayer(this.gameService.players[0]);
+    this.gameService.resetGame();
   }
 
   generateCards = () => {

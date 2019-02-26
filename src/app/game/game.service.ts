@@ -64,6 +64,16 @@ export class GameService extends TurnBasedGame {
         this.currentPlayer.next(nextPlayer);
     }
 
+    resetGame() {
+        /* reset player state */
+        this.players.forEach(player => {
+            player.state = { score: 0 };
+            this.updatePlayer(player);
+        });
+        this.previousCards = [];
+        this.waitingForTurnToEnd = false;
+    }
+
     private isGameOver(): boolean {
         return this.players.reduce(
             (accumulator, currentVal) => accumulator + currentVal.state.score, 0) === Math.floor(this.totalCards / 2);
